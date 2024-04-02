@@ -95,14 +95,20 @@ ggpairs(as.data.frame(Pokemon_x_scaled))
 Apply latent variable method described in this work book. Do you find anything that you did not find before?
 
 ```{r}
-#
-#
+library(data.table)
+library(psych)
+Pokemon <- fread("Pokemon.csv")
+names(Pokemon) <- make.names(names(Pokemon))
+Pokemon_x <- Pokemon[, c('HP', 'Attack', 'Defense', 'Sp..Atk', 'Sp..Def', 'Speed')]
+Pokemon_x_scaled <- scale(Pokemon_x, center = FALSE)
+fa_result <- fa(Pokemon_x_scaled, nfactors = 2, rotate = "varimax")
+print(fa_result)
+
 ```
 
 Comment of the result:
 
 ~~~
-Please write your answer in full sentences.
 
 
 ~~~
@@ -117,7 +123,7 @@ Pokemon_evo<-fread("Pokemon_evo.csv")
 
 ```{r}
 #
-#
+
 ```
 
 Comment of the result:
